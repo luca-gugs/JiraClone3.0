@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://lg2674:Gosuns98@cluster0-kjwdv.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "d03e0de4f17b5c549da9",
+  "githubSecret": "af8aaa87ef112b23ddab56cb400045bfe2e0f901"
+}
