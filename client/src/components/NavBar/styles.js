@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Holder = styled.div`
   width: 100%;
   height: 100px;
-  background-color: #3d3b3b;
+  background-color: #f9f9f9;
   margin: 0px;
   display: flex;
   flex-direction: row;
@@ -39,6 +39,8 @@ export const Header = styled.h2`
   font-family: 'Roboto', sans-serif;
   font-size: 300%;
   margin: auto;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
   @media (max-width: 768px) {
     font-size: 300%;
   }
@@ -49,7 +51,30 @@ export const StyledLink = styled(Link)`
   color: white;
   font-family: 'Roboto', sans-serif;
   margin: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+  &:visited,
+  &:link,
+  &:active {
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    margin: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
+`;
+
+export const StyledA = styled.a`
+  text-decoration: none;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  margin: 1.5rem;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
   &:visited,
   &:link,
   &:active {
