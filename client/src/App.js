@@ -5,6 +5,7 @@ import Landing from './components/Landing/Landing';
 import Register from './components/Register';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
@@ -28,7 +29,7 @@ const App = () => {
         <Switch>
           <Route exact path='/register' component={Register} />
           <Route path='/login' component={Login} />
-          <Route path='/dashboard' component={Dashboard} />
+          <PrivateRoute path='/dashboard' component={Dashboard} />
         </Switch>
       </section>
     </Router>

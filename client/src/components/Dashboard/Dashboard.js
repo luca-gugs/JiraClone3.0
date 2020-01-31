@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../NavBar/Navbar';
+import { connect } from 'react-redux';
+
+import { getCurrentProfile } from '../../actions/profile';
 
 export const Holder = styled.div`
   width: 100%;
@@ -83,4 +86,15 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+// Dashboard.propTypes = {
+//   getCurrentProfile: PropTypes.func.isRequired,
+//   auth: PropTypes.object.isRequired,
+//   profile: PropTypes.object.isRequired
+// }
+
+// const mapStateToProps = state => ({
+//   auth: state.auth,
+//   profile: state.profile
+// })
+
+export default connect({ getCurrentProfile })(Dashboard);
