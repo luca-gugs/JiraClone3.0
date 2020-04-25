@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../NavBar/Navbar';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { getCurrentProfile } from '../../actions/profile';
 
@@ -33,6 +35,8 @@ export const PersonalInfoHolder = styled.div`
   }
 `;
 export const WallHolder = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 70%;
   height: 1440px;
 `;
@@ -55,6 +59,8 @@ export const GravatarHolder = styled.div`
 `;
 
 export const BioSection = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 200px;
   height: 300px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
@@ -70,31 +76,60 @@ export const BioSection = styled.div`
     width: 350px;
   }
 `;
+const Row = styled.div`
+  display: flex;
+`;
 
-const Dashboard = () => {
+const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
+
+  const user = auth.user;
+  const currentUser = profile.profile;
+  console.log(user, 'user');
+  console.log(currentUser, 'currentUser');
   return (
-    <Holder>
-      <Navbar />
-      <PageData>
-        <PersonalInfoHolder>
-          <GravatarHolder></GravatarHolder>
-          <BioSection></BioSection>
+    <Holder className='holder'>
+      <Navbar className='navbar' />
+      <PageData className='pageData'>
+        <PersonalInfoHolder className='personalInfoHolder'>
+          <GravatarHolder className='gravatarHolder'></GravatarHolder>
+          <BioSection className='bioSection'>
+            {/* UserName */}
+            <Row>{user && user.name ? user.name : null}</Row>
+            {/* Bio */}
+            <Row>{currentUser && currentUser.bio ? currentUser.bio : null}</Row>
+            {/* Status */}
+            <Row>
+              {currentUser && currentUser.status ? currentUser.status : null}
+            </Row>
+            <Row>
+              {currentUser && <Link to='edit-profile'>Edit Profile</Link>}
+            </Row>
+          </BioSection>
         </PersonalInfoHolder>
-        <WallHolder></WallHolder>
+        <WallHolder className='wallHolder'>
+          {!currentUser ? (
+            <Row style={{ margin: '1rem' }}>
+              <Link to='/create-profile'>Add Profile + </Link>
+            </Row>
+          ) : null}
+        </WallHolder>
       </PageData>
     </Holder>
   );
 };
 
-// Dashboard.propTypes = {
-//   getCurrentProfile: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired,
-//   profile: PropTypes.object.isRequired
-// }
+Dashboard.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+};
 
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-//   profile: state.profile
-// })
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
 
-export default connect({ getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);

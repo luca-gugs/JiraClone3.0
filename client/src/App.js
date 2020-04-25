@@ -5,6 +5,9 @@ import Landing from './components/Landing/Landing';
 import Register from './components/Register';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
+import CreateProfile from './components/CreateProfile/CreateProfile';
+import EditProfile from './components/EditProfile/EditProfile';
+
 import PrivateRoute from './components/routing/PrivateRoute';
 
 import { loadUser } from './actions/auth';
@@ -30,6 +33,8 @@ const App = () => {
           <Route exact path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <PrivateRoute path='/dashboard' component={Dashboard} />
+          <PrivateRoute path='/create-profile' component={CreateProfile} />
+          <PrivateRoute path='/edit-profile' component={EditProfile} />
         </Switch>
       </section>
     </Router>
