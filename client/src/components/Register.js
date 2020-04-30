@@ -87,16 +87,13 @@ const Button = styled.input`
 class Register extends React.Component {
   state = {};
 
-  handleChange = e => {
-    this.setState(
-      { [e.target.name]: e.target.value },
-      () => console.log(this.state.name),
-      console.log(this.state.email),
-      console.log(this.state.password)
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      console.log(this.state.name)
     );
   };
 
-  onSubmit = async e => {
+  onSubmit = async (e) => {
     e.preventDefault();
     if (this.state.password && this.state.password.length < 6) {
       this.props.setAlert('Password Must be 6 charachters', 'danger');
@@ -177,9 +174,9 @@ class Register extends React.Component {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 export default connect(mapStateToProps, { setAlert, register })(Register);

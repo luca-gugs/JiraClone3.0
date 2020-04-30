@@ -87,8 +87,6 @@ const Dashboard = ({ getCurrentProfile, auth, profile }) => {
 
   const user = auth.user;
   const currentUser = profile.profile;
-  console.log(user, 'user');
-  console.log(currentUser, 'currentUser');
   return (
     <Holder className='holder'>
       <Navbar className='navbar' />

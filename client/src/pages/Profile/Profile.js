@@ -36,7 +36,6 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById]);
 
-  console.log(auth.user, 'auth');
   return (
     <Holder className='holder'>
       <Navbar className='navbar' />

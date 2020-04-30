@@ -88,12 +88,7 @@ class Register extends React.Component {
   state = {};
 
   handleChange = (e) => {
-    this.setState(
-      { [e.target.name]: e.target.value },
-      () => console.log(this.state.name),
-      console.log(this.state.email),
-      console.log(this.state.password)
-    );
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = async (e) => {
@@ -102,26 +97,7 @@ class Register extends React.Component {
       this.props.setAlert('Password Must be 6 charachters', 'danger');
     } else {
       this.props.register(this.state);
-      console.log('Success');
     }
-    //const newUser = {
-    //  name: this.state.name,
-    //  email: this.state.email,
-    //  password: this.state.password
-    //};
-    //try {
-    //  const config = {
-    //    headers: {
-    //      "Content-Type": "application/json"
-    //    }
-    //  };
-    //
-    //  const body = JSON.stringify(newUser);
-    //  const res = await axios.post("/api/users", body, config);
-    //  console.log(res.data);
-    //} catch (err) {
-    //  console.error(err.response.data);
-    //}
   };
 
   render() {

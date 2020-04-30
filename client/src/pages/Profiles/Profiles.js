@@ -31,7 +31,6 @@ const Profiles = ({ getProfiles, profile }) => {
     getProfiles();
   }, []);
 
-  console.log(profile);
   return (
     <Holder className='holder'>
       <Navbar className='navbar' />

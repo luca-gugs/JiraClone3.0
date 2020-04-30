@@ -17,42 +17,19 @@ import {
   HeaderRight,
   Item,
   Input,
-  Button
+  Button,
 } from './styles';
 
 class Login extends React.Component {
   state = {};
 
-  handleChange = e => {
-    this.setState(
-      { [e.target.name]: e.target.value },
-      () => console.log(this.state.name),
-      console.log(this.state.email),
-      console.log(this.state.password)
-    );
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = async e => {
+  onSubmit = async (e) => {
     e.preventDefault();
     this.props.login(this.state.email, this.state.password);
-    //const newUser = {
-    //  name: this.state.name,
-    //  email: this.state.email,
-    //  password: this.state.password
-    //};
-    //try {
-    //  const config = {
-    //    headers: {
-    //      "Content-Type": "application/json"
-    //    }
-    //  };
-    //
-    //  const body = JSON.stringify(newUser);
-    //  const res = await axios.post("/api/users", body, config);
-    //  console.log(res.data);
-    //} catch (err) {
-    //  console.error(err.response.data);
-    //}
   };
 
   // Redirect if logged in
@@ -104,11 +81,11 @@ class Login extends React.Component {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

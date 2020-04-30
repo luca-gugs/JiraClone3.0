@@ -67,10 +67,6 @@ const ProfileItem = ({ data }) => {
   } = data;
 
   const { name, _id, avatar } = user;
-  console.log(data, 'data math');
-
-  console.log(user, 'user math');
-  console.log(skills, 'skills math');
 
   return (
     <ProfileHolder>

@@ -16,10 +16,9 @@ import {
 } from './styles';
 
 const Navbar = (props) => {
-  console.log('navbar', props);
   const authLinks = (
     <NavHolder>
-      <StyledLink to='/register'>Register</StyledLink>
+      <StyledLink to='/posts'>The Stream</StyledLink>
       <StyledLink to='/profiles'>Community</StyledLink>
       <StyledA onClick={props.logout} href='#!'>
         logout
