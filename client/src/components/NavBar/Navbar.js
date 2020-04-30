@@ -12,15 +12,15 @@ import {
   Header,
   StyledLink,
   StyledA,
-  HamburgerMenu
+  HamburgerMenu,
 } from './styles';
 
-const Navbar = props => {
+const Navbar = (props) => {
   console.log('navbar', props);
   const authLinks = (
     <NavHolder>
       <StyledLink to='/register'>Register</StyledLink>
-      <StyledLink to='/register'>Community</StyledLink>
+      <StyledLink to='/profiles'>Community</StyledLink>
       <StyledA onClick={props.logout} href='#!'>
         logout
       </StyledA>
@@ -49,11 +49,11 @@ const Navbar = props => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

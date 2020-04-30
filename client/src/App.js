@@ -6,6 +6,7 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Profiles from './pages/Profiles/Profiles';
+import Profile from './pages/Profile/Profile';
 
 import CreateProfile from './components/ProfileComponents/CreateProfile/CreateProfile';
 import EditProfile from './components/ProfileComponents/EditProfile/EditProfile';
@@ -43,6 +44,7 @@ const App = () => {
           <PrivateRoute path='/edit-profile' component={EditProfile} />
           <PrivateRoute path='/add-experience' component={AddExperience} />
           <PrivateRoute path='/add-education' component={AddEducation} />
+          <PrivateRoute path='/profile/:id' component={Profile} />
         </Switch>
       </section>
     </Router>

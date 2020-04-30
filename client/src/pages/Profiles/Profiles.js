@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../../utils/Spinner';
 import { getProfiles } from '../../actions/profile';
+import ProfileItem from '../../components/ProfileItem/ProfileItem';
 
 export const Holder = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ export const Holder = styled.div`
 `;
 export const PageData = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   background-color: #f9f9f9;
   min-height: 90vh;
 
@@ -21,17 +22,27 @@ export const PageData = styled.div`
     flex-direction: column;
   }
 `;
+const Row = styled.div`
+  display: flex;
+`;
 
-const Profiles = ({ getProfiles, profile: { profile, loading } }) => {
+const Profiles = ({ getProfiles, profile }) => {
   useEffect(() => {
     getProfiles();
   }, []);
+
+  console.log(profile);
   return (
     <Holder className='holder'>
       <Navbar className='navbar' />
-      <PageData>
-        <Spinner />
-        Hi
+      <PageData style={{ alignItems: 'center' }}>
+        {profile && profile.profiles.length > 1 ? (
+          profile.profiles.map((elm) => {
+            return <ProfileItem data={elm} />;
+          })
+        ) : (
+          <Spinner />
+        )}
       </PageData>
     </Holder>
   );
