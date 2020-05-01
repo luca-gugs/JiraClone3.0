@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getPosts } from '../../actions/post';
+import { getPost } from '../../actions/post';
 
 import Navbar from '../../components/NavBar/Navbar';
-import PostForm from '../../components/PostForm/PostForm';
-import PostItem from '../../components/PostItem/PostItem';
 import Spinner from '../../utils/Spinner';
 
-import AddPostButton from '../../assets/addPostButton.png';
-import CloseFormIcon from '../../assets/closeForm.png';
+import PostItem2 from '../../components/PostItem2/PostItem2';
 
 export const Holder = styled.div`
   width: 100%;
@@ -40,23 +37,16 @@ const AddPostClicker = styled.img`
   }
 `;
 
-const Posts = ({ getPosts, post: { posts, loading } }) => {
-  const [posting, setPosting] = useState(false);
+const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getPost(match.params.id);
+  }, [getPost]);
+  console.log(post, 'post');
   return (
     <Holder className='holder'>
       <Navbar className='navbar' />
       <PageData style={{ alignItems: 'center' }}>
-        <PostForm />
-        {posts && posts.length > 1 ? (
-          posts.map((elm) => {
-            return <PostItem data={elm} />;
-          })
-        ) : (
-          <Spinner />
-        )}
+        {post ? <PostItem2 data={post} /> : <Spinner />}
       </PageData>
     </Holder>
   );
@@ -65,4 +55,4 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 const mapStateToProps = (state) => ({
   post: state.post,
 });
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPost })(Post);

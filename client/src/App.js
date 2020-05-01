@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Profiles from './pages/Profiles/Profiles';
 import Profile from './pages/Profile/Profile';
 import Posts from './pages/Posts/Posts';
+import Post from './pages/Post/Post';
 
 import CreateProfile from './components/ProfileComponents/CreateProfile/CreateProfile';
 import EditProfile from './components/ProfileComponents/EditProfile/EditProfile';
@@ -36,17 +37,28 @@ const App = () => {
       <section>
         <Switch>
           <Route exact path='/register' component={Register} />
-          <Route path='/login' component={Login} />
+          <Route exact path='/login' component={Login} />
 
-          <PrivateRoute path='/dashboard' component={Dashboard} />
-          <PrivateRoute path='/profiles' component={Profiles} />
-          <PrivateRoute path='/posts' component={Posts} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
-          <PrivateRoute path='/create-profile' component={CreateProfile} />
-          <PrivateRoute path='/edit-profile' component={EditProfile} />
-          <PrivateRoute path='/add-experience' component={AddExperience} />
-          <PrivateRoute path='/add-education' component={AddEducation} />
-          <PrivateRoute path='/profile/:id' component={Profile} />
+          <PrivateRoute exact path='/profiles' component={Profiles} />
+          <PrivateRoute exact path='/profile/:id' component={Profile} />
+
+          <PrivateRoute exact path='/posts' component={Posts} />
+          <PrivateRoute exact path='/posts/:id' component={Post} />
+
+          <PrivateRoute
+            exact
+            path='/create-profile'
+            component={CreateProfile}
+          />
+          <PrivateRoute exact path='/edit-profile' component={EditProfile} />
+          <PrivateRoute
+            exact
+            path='/add-experience'
+            component={AddExperience}
+          />
+          <PrivateRoute exact path='/add-education' component={AddEducation} />
         </Switch>
       </section>
     </Router>

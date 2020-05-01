@@ -24,7 +24,7 @@ const PostHolder = styled.div`
 const Gravatar = styled.img`
   height: 5rem;
   border-radius: 5rem;
-  margin: 1rem 1rem auto 1rem;
+  margin: 1rem 1rem 1rem 1rem;
 `;
 
 const Col = styled.div`
@@ -35,14 +35,16 @@ const Row = styled.div`
   display: flex;
 `;
 const Name = styled.div`
-  margin-right: 1rem;
+  text-align: center;
 `;
 const Text = styled.div`
   font-size: 1.5rem;
   min-width: 425px;
+  margin: 1rem 0;
 `;
 const StyledMoment = styled(Moment)`
   font-size: 0.75rem;
+  margin-left: 0.5rem;
 `;
 const LikeButton = styled.img`
   height: 5rem;
@@ -55,7 +57,7 @@ const LikeCount = styled.div``;
 
 const ShowCommentsButton = styled.div``;
 
-const PostItem = ({ data, addLike, removeLike, auth, deletePost }) => {
+const PostItem2 = ({ data, addLike, removeLike, auth, deletePost }) => {
   const [showComments, setShowComments] = useState(false);
   console.log(data, 'data');
   console.log(auth, 'auth');
@@ -64,16 +66,41 @@ const PostItem = ({ data, addLike, removeLike, auth, deletePost }) => {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <PostHolder>
         <Row style={{ margin: '0.5rem' }}>
-          <Gravatar src={data.avatar} />
-          <Col>
-            <Row style={{ alignItems: 'center', padding: '0.75rem' }}>
-              <Link to={`/profile/${data.user}`}>
-                <Name>{data.name}</Name>
+          <Col style={{ alignItems: 'center' }}>
+            <Gravatar src={data.avatar} />
+            <Name>
+              <Link
+                style={{ textAlign: 'center' }}
+                to={`/profile/${data.user}`}
+              >
+                {data.name}
               </Link>
+            </Name>
+          </Col>
+
+          <Col>
+            <Row style={{ alignItems: 'center', padding: '0 0.75rem' }}>
+              <Text>{data.text}</Text>
+            </Row>
+
+            <Row
+              style={{
+                alignItems: 'center',
+                padding: '0.75rem',
+                fontSize: '0.75rem',
+              }}
+            >
+              Posted On{' '}
               <StyledMoment format='MM/DD HH:mm'>{data.date}</StyledMoment>
               {!auth.loading && data.user === auth.user._id && (
                 <button
                   type='button'
+                  style={{
+                    marginLeft: '1rem',
+                    backgroundColor: 'red',
+                    color: 'white',
+                    cursor: 'pointer',
+                  }}
                   onClick={() => deletePost(data._id)}
                   className='btn btn-danger'
                 >
@@ -81,30 +108,15 @@ const PostItem = ({ data, addLike, removeLike, auth, deletePost }) => {
                 </button>
               )}
             </Row>
-            <Row style={{ alignItems: 'center', padding: '0 0.75rem' }}>
-              <Text>{data.text}</Text>
-            </Row>
           </Col>
-          <Col style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <LikeButton onClick={(e) => addLike(data._id)} src={Like} />
-            <LikeCount>{data.likes.length}</LikeCount>
-            <LikeButton onClick={(e) => removeLike(data._id)} src={Dislike} />
-          </Col>
-        </Row>
-
-        <Row style={{ margin: '0.5rem' }}>
-          <Link to={`posts/${data._id}`}>
-            {data.comments.length > 1
-              ? `${data.comments.length} Comments`
-              : 'Join the Conversation'}
-          </Link>
         </Row>
       </PostHolder>
       <Row style={{ marginLeft: '2rem' }}>
-        {showComments &&
-          data.comments.map((elm) => {
-            return <CommentItem data={elm} />;
-          })}
+        {data.comments.length > 0
+          ? data.comments.map((elm) => {
+              return <CommentItem data={elm} />;
+            })
+          : 'better luck next time... ya bitch'}
       </Row>
     </div>
   );
@@ -115,5 +127,5 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
-  PostItem
+  PostItem2
 );
