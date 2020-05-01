@@ -114,7 +114,7 @@ const PostItem2 = ({ data, addLike, removeLike, auth, deletePost }) => {
       <Row style={{ marginLeft: '2rem' }}>
         {data.comments.length > 0
           ? data.comments.map((elm) => {
-              return <CommentItem data={elm} />;
+              return <CommentItem data={elm} postId={data._id} />;
             })
           : 'better luck next time... ya bitch'}
       </Row>

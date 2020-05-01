@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { deleteComment } from '../../actions/post';
 import Like from '../../assets/like.png';
 
 const CommentHolder = styled.div`
@@ -47,7 +49,7 @@ const LikeCount = styled.div``;
 
 const ShowCommentsButton = styled.div``;
 
-const CommentItem = ({ data }) => {
+const CommentItem = ({ data, deleteComment, auth, user, postId }) => {
   console.log(data, 'comment data');
 
   return (
@@ -57,6 +59,21 @@ const CommentItem = ({ data }) => {
         <Row style={{ alignItems: 'center', padding: '0.75rem' }}>
           <Name>{data.name}</Name>
           <StyledMoment format='MM/DD HH:mm'>{data.date}</StyledMoment>
+          {!auth.loading && data.user === auth.user._id && (
+            <button
+              type='button'
+              style={{
+                marginLeft: '1rem',
+                backgroundColor: 'red',
+                color: 'white',
+                cursor: 'pointer',
+              }}
+              onClick={() => deleteComment(postId, data._id)}
+              className='btn btn-danger'
+            >
+              X
+            </button>
+          )}
         </Row>
         <Row style={{ alignItems: 'center', padding: '0 0.75rem' }}>
           <Text>{data.text}</Text>
@@ -65,5 +82,9 @@ const CommentItem = ({ data }) => {
     </CommentHolder>
   );
 };
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  user: state.user,
+});
 
-export default CommentItem;
+export default connect(mapStateToProps, { deleteComment })(CommentItem);

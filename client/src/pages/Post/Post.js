@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { getPost } from '../../actions/post';
 
 import Navbar from '../../components/NavBar/Navbar';
-import Spinner from '../../utils/Spinner';
-
 import PostItem2 from '../../components/PostItem2/PostItem2';
+import CommentForm from '../../components/CommentForm/CommentForm';
+import Spinner from '../../utils/Spinner';
 
 export const Holder = styled.div`
   width: 100%;
@@ -47,6 +47,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       <Navbar className='navbar' />
       <PageData style={{ alignItems: 'center' }}>
         {post ? <PostItem2 data={post} /> : <Spinner />}
+        {post && <CommentForm postId={post._id} />}
       </PageData>
     </Holder>
   );
