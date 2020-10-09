@@ -10,3 +10,7 @@ export const Col = styled.div`
   flex-direction: column;
   width: 100%;
 `;
+
+export const FormRow = styled(Row)`
+  margin: 1rem 0;
+`;
