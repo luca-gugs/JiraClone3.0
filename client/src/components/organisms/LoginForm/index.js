@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+
 import { connect } from 'react-redux';
 import { login } from '../../../actions/auth';
 
 import Input from '../../atoms/Input';
 import { FormCol } from './styles';
+import { FormRow } from '../../../utils/GlobalStyles';
 
 const LoginForm = props => {
   const [email, setEmail] = useState();
@@ -17,9 +19,18 @@ const LoginForm = props => {
   return (
     <form onSubmit={onSubmit}>
       <FormCol>
-        <Input label='email' onChange={setEmail} value={email} />
-        <Input label='password' onChange={setPassword} value={password} />
-        <button>Login</button>
+        <FormRow style={{ justifyContent: 'center' }}>
+          <h2>Login</h2>
+        </FormRow>
+        <FormRow>
+          <Input label='email' onChange={setEmail} value={email} />
+        </FormRow>
+        <FormRow>
+          <Input label='password' onChange={setPassword} value={password} />
+        </FormRow>
+        <FormRow style={{ justifyContent: 'center' }}>
+          <button>Login</button>
+        </FormRow>
       </FormCol>
     </form>
   );
