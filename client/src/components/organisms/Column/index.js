@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getCardsByColumn } from '../../../actions/cards';
 import { Droppable } from 'react-beautiful-dnd';
 import Card from '../Card';
+import CreateNewCard from '../CreateNewCard';
 import { Holder, HeaderRow, Header, CardList } from './styles';
 
 class Column extends Component {
@@ -39,6 +40,7 @@ class Column extends Component {
             </CardList>
           )}
         </Droppable>
+        <CreateNewCard id={_id} />
       </Holder>
     );
   }

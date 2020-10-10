@@ -7,7 +7,7 @@ import { getCardsByColumn, reorderCards } from '../../actions/cards';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../components/organisms/Column';
 import { Row, PageWrapper } from '../../utils/GlobalStyles';
-
+import CreateNewColumn from '../../components/organisms/CreateNewColumn';
 class Board extends Component {
   state = {
     initialCards: false,
@@ -69,6 +69,7 @@ class Board extends Component {
               overflow: 'scroll',
               padding: '1rem 2rem',
               width: 'auto',
+              alignItems: 'center',
             }}
           >
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -102,6 +103,7 @@ class Board extends Component {
                   );
                 })}
             </DragDropContext>
+            <CreateNewColumn boardId={boardId} />
           </Row>
         </div>
       </PageWrapper>

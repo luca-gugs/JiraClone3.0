@@ -3,10 +3,10 @@ import { Col, Row } from '../../../utils/GlobalStyles';
 
 export const Holder = styled(Col)`
   height: 80vh;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
-    0 4px 4px rgba(0, 0, 0, 0.15);
-  width: 40rem;
-  min-width: 40rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background-color: #fbfbff;
+  width: 25rem;
+  min-width: 25rem;
   margin: 0 2rem;
 `;
 
