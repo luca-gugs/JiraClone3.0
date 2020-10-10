@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import PrivateRoute from './components/routing/PrivateRoute';
+import PrivateRoute from './components/atoms/routing/PrivateRoute';
 
 import Landing from './pages/Landing/Landing';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 import { loadUser } from './actions/auth';
@@ -25,6 +26,7 @@ const App = () => {
       <section>
         <Switch>
           <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </section>
