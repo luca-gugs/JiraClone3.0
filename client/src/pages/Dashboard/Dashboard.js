@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { getAllBoards } from '../../actions/boards';
 
-const Dashboard = () => {
-  return <div>Dashboard</div>;
+import BoardDisplay from '../../components/organisms/BoardDisplay';
+
+const Dashboard = ({ getAllBoards, auth, boards }) => {
+  useEffect(() => {
+    getAllBoards();
+  }, []);
+  return (
+    <div>
+      <BoardDisplay boards={boards} />
+    </div>
+  );
 };
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  boards: state.boards,
+});
+
+export default connect(mapStateToProps, { getAllBoards })(Dashboard);
