@@ -8,7 +8,7 @@ import BoardDisplay from '../../components/organisms/BoardDisplay';
 const Dashboard = ({ getAllBoards, auth, boards }) => {
   useEffect(() => {
     getAllBoards();
-  }, []);
+  }, [auth]);
   return (
     <div>
       <BoardDisplay boards={boards} />
