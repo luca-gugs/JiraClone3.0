@@ -2,6 +2,7 @@ import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCardsByColumn, deleteCard } from '../../../actions/cards';
 import { Draggable } from 'react-beautiful-dnd';
+import DeleteImg from '../../../assets/trash-can.png';
 
 import { CardHolder, HeaderRow, BodyRow, DeleteIcon } from './styles';
 
@@ -34,7 +35,10 @@ class Card extends Component {
           >
             <HeaderRow>{title}</HeaderRow>
             <BodyRow>{description}</BodyRow>
-            <DeleteIcon onClick={() => this.onDelete(columnId, _id)} />
+            <DeleteIcon
+              onClick={() => this.onDelete(columnId, _id)}
+              src={DeleteImg}
+            />
           </CardHolder>
         )}
       </Draggable>

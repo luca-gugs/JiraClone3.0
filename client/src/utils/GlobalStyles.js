@@ -33,7 +33,7 @@ export const TransitionButton = styled.button`
 
   display: flex;
   margin: 2.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 400;
   line-height: 1;
   padding: 1.2em 2.8em;

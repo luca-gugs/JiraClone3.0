@@ -26,11 +26,13 @@ export const BodyRow = styled(Row)`
   margin-bottom: 1.5rem;
 `;
 
-export const DeleteIcon = styled.div`
+export const DeleteIcon = styled.img`
   position: absolute;
-  height: 3rem;
-  width: 3rem;
-  background-color: red;
+  object-fit: contain;
+  height: 2rem;
+  width: 2rem;
   right: 0;
   bottom: 0;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
 `;
