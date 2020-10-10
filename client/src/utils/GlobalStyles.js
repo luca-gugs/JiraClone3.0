@@ -14,3 +14,7 @@ export const Col = styled.div`
 export const FormRow = styled(Row)`
   margin: 1rem 0;
 `;
+
+export const PageWrapper = styled.div`
+  padding-top: 7.2rem;
+`;

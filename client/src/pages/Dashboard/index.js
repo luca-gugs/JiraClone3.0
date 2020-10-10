@@ -4,15 +4,17 @@ import styled from 'styled-components';
 import { getAllBoards } from '../../actions/boards';
 
 import BoardDisplay from '../../components/organisms/BoardDisplay';
-
+import { PageWrapper } from '../../utils/GlobalStyles';
 const Dashboard = ({ getAllBoards, auth, boards }) => {
   useEffect(() => {
     getAllBoards();
   }, [auth]);
   return (
-    <div>
-      <BoardDisplay boards={boards} />
-    </div>
+    <PageWrapper>
+      <div style={{ minHeight: '1200rem' }}>
+        <BoardDisplay boards={boards} />
+      </div>
+    </PageWrapper>
   );
 };
 
