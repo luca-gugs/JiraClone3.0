@@ -6,7 +6,7 @@ import { getAllBoards } from '../../actions/boards';
 import { getCardsByColumn, reorderCards } from '../../actions/cards';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../components/organisms/Column';
-import { Row } from '../../utils/GlobalStyles';
+import { Row, PageWrapper } from '../../utils/GlobalStyles';
 
 class Board extends Component {
   state = {
@@ -61,48 +61,50 @@ class Board extends Component {
     const boardId = board && board._id;
     const cardsKey = this.props.cards.cards?.cards;
     return (
-      <div style={{ minHeight: '100vh' }}>
-        <Row
-          style={{
-            flexWrap: 'nowrap',
-            overflow: 'scroll',
-            padding: '1rem 2rem',
-            width: 'auto',
-          }}
-        >
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            {board &&
-              board.columnOrder.map((columnId, index) => {
-                const columnData = [];
-                columns.map(elm => {
-                  if (elm.columnId === columnId) {
-                    columnData.push(elm);
-                  }
-                });
+      <PageWrapper>
+        <div style={{ minHeight: '100vh' }}>
+          <Row
+            style={{
+              flexWrap: 'nowrap',
+              overflow: 'scroll',
+              padding: '1rem 2rem',
+              width: 'auto',
+            }}
+          >
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              {board &&
+                board.columnOrder.map((columnId, index) => {
+                  const columnData = [];
+                  columns.map(elm => {
+                    if (elm.columnId === columnId) {
+                      columnData.push(elm);
+                    }
+                  });
 
-                const test = this.props.cards.cards?.cards;
-                const cardData = [];
-                columnData.length > 0 &&
-                  columnData[0].cardIds.map(elm => {
-                    return this.props.cards.cards?.cards.map(elm2 => {
-                      elm2.filter(function (obj) {
-                        if (obj.cardId === elm) {
-                          cardData.push(obj);
-                        }
+                  const test = this.props.cards.cards?.cards;
+                  const cardData = [];
+                  columnData.length > 0 &&
+                    columnData[0].cardIds.map(elm => {
+                      return this.props.cards.cards?.cards.map(elm2 => {
+                        elm2.filter(function (obj) {
+                          if (obj.cardId === elm) {
+                            cardData.push(obj);
+                          }
+                        });
                       });
                     });
-                  });
-                return (
-                  <Column
-                    column={columnData}
-                    passedCards={cardData}
-                    key={index}
-                  />
-                );
-              })}
-          </DragDropContext>
-        </Row>
-      </div>
+                  return (
+                    <Column
+                      column={columnData}
+                      passedCards={cardData}
+                      key={index}
+                    />
+                  );
+                })}
+            </DragDropContext>
+          </Row>
+        </div>
+      </PageWrapper>
     );
   }
 }
