@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createCard } from '../../../actions/cards';
 
 import Input from '../../atoms/Input';
+import TextArea from '../../atoms/TextArea';
 import { Row } from '../../../utils/GlobalStyles';
 
 import {
@@ -36,11 +37,11 @@ const CreateNewCard = ({ createCard, id }) => {
       <PageFill className={formActive ? 'active' : ''}>
         <NewBoardForm>
           <Header>Add a Task</Header>
-          <div style={{ margin: '1rem 0' }}>
+          <div style={{ margin: '1rem 0', width: '100%' }}>
             <Input label='Name Your Card' value={title} onChange={setTitle} />
           </div>
-          <div style={{ margin: '1rem 0' }}>
-            <Input
+          <div style={{ margin: '1rem 0', width: '100%' }}>
+            <TextArea
               label='Set A Description'
               value={description}
               onChange={setDescription}

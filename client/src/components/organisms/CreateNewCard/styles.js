@@ -11,6 +11,7 @@ export const PageFill = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 100;
   &.active {
     display: flex;
   }
