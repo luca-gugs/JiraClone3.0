@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { getAllBoards } from '../../actions/boards';
 
 import BoardDisplay from '../../components/organisms/BoardDisplay';
+import CreateNewBoard from '../../components/organisms/CreateNewBoard';
 import { PageWrapper } from '../../utils/GlobalStyles';
+
 const Dashboard = ({ getAllBoards, auth, boards }) => {
   useEffect(() => {
     getAllBoards();
@@ -13,6 +14,7 @@ const Dashboard = ({ getAllBoards, auth, boards }) => {
     <PageWrapper>
       <div style={{ minHeight: '1200rem' }}>
         <BoardDisplay boards={boards} />
+        <CreateNewBoard />
       </div>
     </PageWrapper>
   );
