@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/auth';
 import LoginForm from '../../components/organisms/LoginForm';
+import { PageWrapper } from '../../utils/GlobalStyles';
 
 const Login = props => {
   if (props.isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
-  return <LoginForm />;
+  return (
+    <PageWrapper>
+      <LoginForm />
+    </PageWrapper>
+  );
 };
 
 const mapStateToProps = state => ({
