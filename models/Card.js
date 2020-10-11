@@ -9,6 +9,7 @@ const CardSchema = new Schema({
   column: { type: String, ref: 'cards' },
   cardNumb: { type: Number },
   color: { type: String },
+
 });
 
 const Card = mongoose.model('cards', CardSchema);

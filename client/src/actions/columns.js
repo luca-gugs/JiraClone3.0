@@ -30,12 +30,14 @@ export const createNewColumn = ({ title, boardId }) => async dispatch => {
   try {
     const res = await axios.post('/api/columns', body, config);
     dispatch({ type: CREATE_COL, payload: res.data });
+
   } catch (error) {
     console.log(error, 'error');
   }
 };
 
 export const changeColumnName = ({ columnId, title }) => async dispatch => {
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -46,6 +48,7 @@ export const changeColumnName = ({ columnId, title }) => async dispatch => {
   };
   try {
     const res = await axios.post(`/api/columns/${columnId}`, body, config);
+
   } catch (error) {
     console.log(error, 'error');
   }

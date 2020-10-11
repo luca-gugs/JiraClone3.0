@@ -20,6 +20,7 @@ class Column extends Component {
     const columnData = this.props.column[0];
     const title = columnData && columnData.title;
     const _id = columnData && columnData._id;
+
     return (
       <Holder>
         <HeaderRow>

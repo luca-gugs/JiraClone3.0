@@ -31,6 +31,7 @@ router.post('/', auth, async (req, res) => {
     const newColumnOrder = Array.from(board.columnOrder);
 
     newColumnOrder.push(result.columnId);
+
     board.set({ columnOrder: newColumnOrder });
     const result2 = await board.save();
     return res.status(201).json({
@@ -71,6 +72,7 @@ router.get('/all/:boardId', auth, async (req, res) => {
 router.post('/:_id', auth, async (req, res) => {
   try {
     const { _id } = req.params;
+
     const newTitle = req.body.title;
     column = await Column.findOneAndUpdate(
       { _id: _id },

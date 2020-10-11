@@ -5,6 +5,7 @@ import { createCard } from '../../../actions/cards';
 import Input from '../../atoms/Input';
 import TextArea from '../../atoms/TextArea';
 import CardColorSelect from '../../atoms/CardColorSelect';
+
 import { Row } from '../../../utils/GlobalStyles';
 
 import {
@@ -21,7 +22,7 @@ const CreateNewCard = ({ createCard, id }) => {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [color, setColor] = useState('none');
-  console.log(color, 'color24');
+
   const handleClick = () => {
     setFormActive(!formActive);
   };
@@ -29,6 +30,7 @@ const CreateNewCard = ({ createCard, id }) => {
   const onSubmit = async e => {
     e.preventDefault();
     createCard({ title, description, columnId: id, color });
+
     setFormActive(false);
     window.location.reload(false);
   };
@@ -52,6 +54,7 @@ const CreateNewCard = ({ createCard, id }) => {
           <div style={{ margin: '1rem 0 2rem 0' }}>
             <CardColorSelect value={color} onChange={setColor} />
           </div>
+
           <GoButton onClick={onSubmit}>Go</GoButton>
         </NewBoardForm>
         <BackgroundColor onClick={handleClick} />

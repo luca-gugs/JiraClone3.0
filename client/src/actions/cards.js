@@ -20,7 +20,6 @@ export const getCardsByColumn = props => async dispatch => {
 
   try {
     const res = await axios.post('/api/cards/getallcards', body, config);
-    console.log(res, 'res');
     dispatch({ type: GET_CARDS_BY_COLUMN, payload: res.data });
   } catch (error) {
     console.log(error, 'error');

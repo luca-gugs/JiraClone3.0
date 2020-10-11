@@ -19,11 +19,13 @@ class Board extends Component {
     this.setState({ initialLoad: true });
   }
   componentDidUpdate(prevProps) {
+
     if (this.props.columns.currentColumns.columns && !this.state.initialCards) {
       this.props.getCardsByColumn(this.props.columns.currentColumns.columns);
       this.setState({ initialCards: true });
     }
   }
+
 
   onDragEnd = result => {
     const { destination, draggableId, source, type } = result;

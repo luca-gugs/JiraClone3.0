@@ -62,6 +62,7 @@ export default function (state = initialState, action) {
       const { newDifferentColumnsList } = payload;
       const currentColumns = state;
 
+
       var arr = Object.keys(newDifferentColumnsList).map(key => {
         if (newDifferentColumnsList[key])
           return { cardIds: newDifferentColumnsList[key], key: key };
@@ -79,6 +80,7 @@ export default function (state = initialState, action) {
             return currentColumns;
           }
         });
+
       }
       return {
         ...currentColumns,

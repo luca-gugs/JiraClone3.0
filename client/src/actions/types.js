@@ -1,8 +1,5 @@
-export const SET_ALERT = 'SET_ALERT';
-export const REMOVE_ALERT = 'REMOVE_ALERT';
-
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -11,18 +8,18 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 
-export const GET_PROFILE = 'GET_PROFILE';
-export const GET_PROFILES = 'GET_PROFILES';
-export const CLEAR_PROFILE = 'CLEAR_PROFILE';
-export const PROFILE_ERROR = 'PROFILE_ERROR';
-export const UPDATE_PROFILE = 'UPDATE_PROFILE';
-export const GET_REPOS = 'GET_REPOS';
+export const GET_ALL_BOARDS = 'GET_ALL_BOARDS';
+export const BOARD_GET_FAILED = 'BOARD_GET_FAILED';
 
-export const GET_POST = 'GET_POST';
-export const GET_POSTS = 'GET_POSTS';
-export const POST_ERROR = 'POST_ERROR';
-export const UPDATE_LIKES = 'UPDATE_LIKES';
-export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const CREATE_BOARD = 'CREATE_BOARD';
+export const CREATE_CARD = 'CREATE_CARD';
+
+export const GET_COLUMNS_BY_BOARD = 'GET_COLUMNS_BY_BOARD';
+
+export const GET_CARDS_BY_COLUMN = 'GET_CARDS_BY_COLUMN';
+export const CREATE_COL = 'CREATE_COL';
+
+export const REORDER_CARD_SAME_COL = 'REORDER_CARD_SAME_COL';
+export const REORDER_CARD_DIFFERENT_COL = 'REORDER_CARD_DIFFERENT_COL';
+
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';

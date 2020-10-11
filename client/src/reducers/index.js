@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import alert from './alert';
 import auth from './auth';
-import profile from './profile';
-import post from './post';
-
+import boards from './boards';
+import columns from './columns';
+import cards from './cards';
 export default combineReducers({
-  alert,
   auth,
-  profile,
-  post,
+  boards,
+  columns,
+  cards,
 });

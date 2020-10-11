@@ -20,7 +20,7 @@ class Card extends Component {
   render() {
     const { data, columnId } = this.props;
     const { title, description, _id, cardId, cardNumb, color } = data;
-    console.log(color, 'color');
+
     return (
       <Draggable draggableId={cardId} key={cardId} index={this.props.idx}>
         {(provided, snapshot) => (
@@ -37,6 +37,7 @@ class Card extends Component {
               src={DeleteImg}
             />
             {color && <ColorIcon color={color} />}
+
           </CardHolder>
         )}
       </Draggable>

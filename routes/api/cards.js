@@ -16,6 +16,7 @@ const Card = require('../../models/Card');
 router.post('/', auth, async (req, res) => {
   try {
     const { title, description, columnId, cardId, color } = req.body;
+
     await Card.find().exec();
     const newCard = new Card({
       title,
@@ -23,6 +24,7 @@ router.post('/', auth, async (req, res) => {
       column: columnId,
       cardId,
       color,
+
     });
     const result = await newCard.save();
 
@@ -40,6 +42,7 @@ router.post('/', auth, async (req, res) => {
       card: result,
       column: result2,
     });
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -50,12 +53,14 @@ router.post('/', auth, async (req, res) => {
 // @desc    Delete a card
 // @access  Private
 router.delete('/:id/:columnId', auth, async (req, res) => {
+
   try {
     const card = await Card.findById(req.params.id);
     const column = await Column.findById(req.params.columnId);
     if (!card) {
       return res.status(404).json({ msg: 'Post not found' });
     }
+
     const newCardIds = [];
     column.cardIds.filter(function (obj) {
       if (obj !== card.cardId) {
@@ -82,6 +87,7 @@ const findAllCards = columnId =>
     'cardId title description cardNumb color'
   );
 
+
 router.post('/getallcards', auth, async (req, res) => {
   try {
     const { columnIds } = req.body;
@@ -99,6 +105,7 @@ router.post('/getallcards', auth, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+
 });
 
 // @route    POST api/cards/reorder/samecolumn
@@ -109,6 +116,7 @@ router.post('/getallcards', auth, async (req, res) => {
 router.post('/reorder/samecolumn', auth, async (req, res) => {
   try {
     const { sameColumnId, samecolumnCardIds } = req.body;
+
     const column = await Column.findOne({ _id: sameColumnId });
 
     if (!column) {
@@ -123,6 +131,7 @@ router.post('/reorder/samecolumn', auth, async (req, res) => {
     return res
       .status(200)
       .json({ message: 'same column reorder success', savedColumn });
+
   } catch (error) {
     return error;
   }
