@@ -19,17 +19,13 @@ class Board extends Component {
     this.setState({ initialLoad: true });
   }
   componentDidUpdate(prevProps) {
-    console.log(prevProps.columns.currentColumns.columns, 'prevProps');
-    console.log(this.props.columns.currentColumns.columns, 'this.props');
+
     if (this.props.columns.currentColumns.columns && !this.state.initialCards) {
       this.props.getCardsByColumn(this.props.columns.currentColumns.columns);
       this.setState({ initialCards: true });
     }
   }
-  // if (this.props.columns.currentColumns.columns && !state.initialCards) {
-  //  this.props.getCardsByColumn(props.columns.currentColumns.columns);
-  //   setInitialCards(true);
-  // }
+
 
   onDragEnd = result => {
     const { destination, draggableId, source, type } = result;

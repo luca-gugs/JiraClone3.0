@@ -8,6 +8,8 @@ const CardSchema = new Schema({
   description: { type: String, required: true },
   column: { type: String, ref: 'cards' },
   cardNumb: { type: Number },
+  color: { type: String },
+
 });
 
 const Card = mongoose.model('cards', CardSchema);

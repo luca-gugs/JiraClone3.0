@@ -18,6 +18,15 @@ export const CardHolder = styled(Col)`
   }
 `;
 
+export const ColorIcon = styled.div`
+  position: absolute;
+  right: 1rem;
+  height: 1rem;
+  width: 1rem;
+  transform: rotate(45deg);
+  background-color: ${props => (props.color ? props.color : 'green')};
+`;
+
 export const HeaderRow = styled(Row)`
   font-size: 2rem;
   margin-bottom: 1.5rem;

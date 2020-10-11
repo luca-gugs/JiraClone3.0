@@ -19,8 +19,8 @@ class Column extends Component {
   render() {
     const columnData = this.props.column[0];
     const title = columnData && columnData.title;
-    const _id = columnData && columnData._id; //5efd3e5c0814c206fd390de6
-    console.log(_id, 'check value');
+    const _id = columnData && columnData._id;
+
     return (
       <Holder>
         <HeaderRow>

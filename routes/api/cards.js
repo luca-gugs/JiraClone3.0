@@ -15,13 +15,16 @@ const Card = require('../../models/Card');
 // @req     x-auth-token, boardId, title, columnId
 router.post('/', auth, async (req, res) => {
   try {
-    const { title, description, columnId, cardId } = req.body;
+    const { title, description, columnId, cardId, color } = req.body;
+
     await Card.find().exec();
     const newCard = new Card({
       title,
       description,
       column: columnId,
       cardId,
+      color,
+
     });
     const result = await newCard.save();
 
@@ -39,7 +42,7 @@ router.post('/', auth, async (req, res) => {
       card: result,
       column: result2,
     });
-    // console.log(newCardIds);
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -50,8 +53,6 @@ router.post('/', auth, async (req, res) => {
 // @desc    Delete a card
 // @access  Private
 router.delete('/:id/:columnId', auth, async (req, res) => {
-  // console.log(req.params.id, 'card Id');
-  // console.log(req.params.columnId, 'column Id');
 
   try {
     const card = await Card.findById(req.params.id);
@@ -59,8 +60,7 @@ router.delete('/:id/:columnId', auth, async (req, res) => {
     if (!card) {
       return res.status(404).json({ msg: 'Post not found' });
     }
-    // console.log(card.cardId, 'card');
-    console.log(column.cardIds, 'column');
+
     const newCardIds = [];
     column.cardIds.filter(function (obj) {
       if (obj !== card.cardId) {
@@ -83,7 +83,10 @@ router.delete('/:id/:columnId', auth, async (req, res) => {
 
 //Extracted Function
 const findAllCards = columnId =>
-  Card.find({ column: columnId }).select('cardId title description cardNumb');
+  Card.find({ column: columnId }).select(
+    'cardId title description cardNumb color'
+  );
+
 
 router.post('/getallcards', auth, async (req, res) => {
   try {
@@ -103,7 +106,6 @@ router.post('/getallcards', auth, async (req, res) => {
     console.log(error);
   }
 
-  // console.log(columnIds);
 });
 
 // @route    POST api/cards/reorder/samecolumn
@@ -114,7 +116,7 @@ router.post('/getallcards', auth, async (req, res) => {
 router.post('/reorder/samecolumn', auth, async (req, res) => {
   try {
     const { sameColumnId, samecolumnCardIds } = req.body;
-    console.log(sameColumnId, samecolumnCardIds);
+
     const column = await Column.findOne({ _id: sameColumnId });
 
     if (!column) {
@@ -130,7 +132,6 @@ router.post('/reorder/samecolumn', auth, async (req, res) => {
       .status(200)
       .json({ message: 'same column reorder success', savedColumn });
 
-    console.log(column, 'column');
   } catch (error) {
     return error;
   }
