@@ -74,9 +74,8 @@ router.post(
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(',').map((skill) => skill.trim());
+      profileFields.skills = skills.split(',').map(skill => skill.trim());
     }
-    console.log(skills);
 
     //Build Social object
     profileFields.social = {};
@@ -226,7 +225,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 
     //Get remove index
     const removeIndex = profile.experience
-      .map((item) => item.id)
+      .map(item => item.id)
       .indexOf(req.params.exp_id);
 
     //Splice out experience
@@ -310,7 +309,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 
     //Get remove index
     const removeIndex = profile.education
-      .map((item) => item.id)
+      .map(item => item.id)
       .indexOf(req.params.edu_id);
 
     //Splice out education

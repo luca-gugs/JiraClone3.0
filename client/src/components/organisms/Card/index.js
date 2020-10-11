@@ -4,26 +4,23 @@ import { getCardsByColumn, deleteCard } from '../../../actions/cards';
 import { Draggable } from 'react-beautiful-dnd';
 import DeleteImg from '../../../assets/trash-can.png';
 
-import { CardHolder, HeaderRow, BodyRow, DeleteIcon } from './styles';
-
-const onDelete = (columnId, _id) => {
-  console.log(columnId, 'props');
-  console.log(_id, 'props');
-  this.props.deleteCard(columnId, _id);
-  // window.location.reload(false);
-};
+import {
+  CardHolder,
+  HeaderRow,
+  BodyRow,
+  DeleteIcon,
+  ColorIcon,
+} from './styles';
 
 class Card extends Component {
   onDelete = (columnId, _id) => {
-    console.log(columnId, 'props');
-    console.log(_id, 'props');
     this.props.deleteCard(columnId, _id);
     window.location.reload(false);
   };
   render() {
     const { data, columnId } = this.props;
-    const { title, description, _id, cardId, cardNumb } = data;
-    console.log(columnId, 'cId');
+    const { title, description, _id, cardId, cardNumb, color } = data;
+
     return (
       <Draggable draggableId={cardId} key={cardId} index={this.props.idx}>
         {(provided, snapshot) => (
@@ -39,6 +36,8 @@ class Card extends Component {
               onClick={() => this.onDelete(columnId, _id)}
               src={DeleteImg}
             />
+            {color && <ColorIcon color={color} />}
+
           </CardHolder>
         )}
       </Draggable>

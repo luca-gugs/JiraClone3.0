@@ -61,10 +61,7 @@ export default function (state = initialState, action) {
     case REORDER_CARD_DIFFERENT_COL:
       const { newDifferentColumnsList } = payload;
       const currentColumns = state;
-      // console.log(newDifferentColumnsList, 'key1');
 
-      console.log(newDifferentColumnsList, 'newdifcollist');
-      console.log(currentColumns, 'currcols');
 
       var arr = Object.keys(newDifferentColumnsList).map(key => {
         if (newDifferentColumnsList[key])
@@ -77,36 +74,18 @@ export default function (state = initialState, action) {
         --i
       ) {
         arr.map(elm => {
-          console.log(elm, 'elm');
           if (elm.key === currentColumns.currentColumns.columns[i]._id) {
-            console.log(elm.cardIds.cardIds, 'ecid');
             currentColumns.currentColumns.columns[i].cardIds =
               elm.cardIds.cardIds;
             return currentColumns;
           }
         });
-        console.log(currentColumns);
+
       }
       return {
         ...currentColumns,
       };
 
-    // // console.log(arr, 'arr');
-    // if (newDifferentColumnsList) {
-    //   const newState = {
-    //     ...state,
-    //     currentColumns: {
-    //       ...state.currentColumns,
-    //       ...newDifferentColumnsList,
-    //     },
-    //   };
-    //   console.log(newState);
-
-    //   return newState;
-    // }
-    // return {
-    //   ...state,
-    // };
     default:
       return state;
   }

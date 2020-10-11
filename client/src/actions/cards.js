@@ -29,7 +29,7 @@ export const getCardsByColumn = props => async dispatch => {
 
 // createCard
 export const createCard = props => async dispatch => {
-  const { title, description, columnId } = props;
+  const { title, description, columnId, color } = props;
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -40,6 +40,7 @@ export const createCard = props => async dispatch => {
     cardId: uuidv4(),
     columnId,
     description,
+    color,
   };
   console.log(props);
   try {
