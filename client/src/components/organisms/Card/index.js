@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCardsByColumn, deleteCard } from '../../../actions/cards';
 import { Draggable } from 'react-beautiful-dnd';
-import DeleteImg from '../../../assets/trash-can.png';
+import DeleteImg from '../../../assets/ellipsis.png';
 
 import {
   CardHolder,
@@ -37,7 +37,6 @@ class Card extends Component {
               src={DeleteImg}
             />
             {color && <ColorIcon color={color} />}
-
           </CardHolder>
         )}
       </Draggable>

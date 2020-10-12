@@ -16,8 +16,10 @@ export const FormRow = styled(Row)`
 `;
 
 export const PageWrapper = styled.div`
-  padding: 9rem 1rem 0 1rem;
+  display: flex;
+  padding: 9rem 0;
   box-sizing: border-box;
+  min-height: 95vh;
 `;
 
 export const TransitionButton = styled.button`

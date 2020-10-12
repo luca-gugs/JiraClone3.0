@@ -13,6 +13,7 @@ export const NavBar = styled.div`
   width: 100vw;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.19);
   background-color: rgba(255, 250, 250, 0.75);
+  z-index: 1;
   ${Breakpoint.md} {
   }
   ${Breakpoint.lg} {

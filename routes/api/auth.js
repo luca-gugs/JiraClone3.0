@@ -1,4 +1,6 @@
 const express = require('express');
+const passport = require('passport');
+var cors = require('cors');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
@@ -7,6 +9,23 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
+const GoogleUser = require('../../models/GoogleUsers');
+
+// @route   GET api/auth/google
+// @desc    Auth with Google
+// @access  Public
+router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+
+// @route   GET api/auth/google/callback
+// @desc    Google Auth Callback
+// @access  Public
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/dashboard');
+  }
+);
 
 // @route   GET api/auth
 // @desc    Check for a user with req.user.id
@@ -28,7 +47,7 @@ router.post(
   '/',
   [
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -44,7 +63,7 @@ router.post(
 
       if (!user) {
         return res.status(400).json({
-          errors: [{ msg: 'Invalid Credentials' }]
+          errors: [{ msg: 'Invalid Credentials' }],
         });
       }
 
@@ -58,8 +77,8 @@ router.post(
       //Return jsonwebtoken
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jwt.sign(

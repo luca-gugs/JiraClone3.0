@@ -10,7 +10,7 @@ const Login = props => {
     return <Redirect to='/dashboard' />;
   }
   return (
-    <PageWrapper>
+    <PageWrapper style={{ justifyContent: 'center', alignItems: 'center' }}>
       <LoginForm />
     </PageWrapper>
   );
