@@ -6,6 +6,7 @@ import {
   REORDER_CARD_SAME_COL,
   REORDER_CARD_DIFFERENT_COL,
   CREATE_COL,
+  CLEAR_COLUMNS,
 } from '../actions/types';
 import boards from './boards';
 
@@ -62,7 +63,6 @@ export default function (state = initialState, action) {
       const { newDifferentColumnsList } = payload;
       const currentColumns = state;
 
-
       var arr = Object.keys(newDifferentColumnsList).map(key => {
         if (newDifferentColumnsList[key])
           return { cardIds: newDifferentColumnsList[key], key: key };
@@ -80,12 +80,17 @@ export default function (state = initialState, action) {
             return currentColumns;
           }
         });
-
       }
       return {
         ...currentColumns,
       };
-
+    case CLEAR_COLUMNS: {
+      return {
+        ...state,
+        currentBoard: [],
+        currentColumns: [],
+      };
+    }
     default:
       return state;
   }

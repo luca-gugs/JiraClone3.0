@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BaseInput } from './styles';
 
-const Input = ({ label, value, onChange }) => {
+const Input = ({ label, value, onChange, ...otherProps }) => {
   const [localValue, setLocalValue] = useState();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const Input = ({ label, value, onChange }) => {
       placeholder={label || 'Label'}
       value={localValue}
       onChange={handleChange}
+      {...otherProps}
     />
   );
 };

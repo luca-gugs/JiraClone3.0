@@ -46,6 +46,23 @@ export const ShowButton = styled(TransitionButton)`
   margin: auto;
 `;
 
+export const ShowIcon = styled.img`
+  position: absolute;
+  left: 0.5rem;
+  bottom: 1rem;
+
+  object-fit: contain;
+  height: 1.5rem;
+  width: 1.5rem;
+
+  transition: height 400ms, width 400ms;
+  :hover {
+    height: 2rem;
+    width: 2rem;
+  }
+  cursor: pointer;
+`;
+
 export const GoButton = styled(TransitionButton)`
   width: 5rem;
   height: 5rem;

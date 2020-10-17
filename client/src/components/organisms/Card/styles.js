@@ -38,9 +38,9 @@ export const BodyRow = styled(Row)`
 export const DeleteIcon = styled.img`
   position: absolute;
   object-fit: contain;
-  height: 2rem;
-  width: 2rem;
-  right: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  right: 0.25rem;
   bottom: 0;
   margin-bottom: 0.25rem;
   cursor: pointer;

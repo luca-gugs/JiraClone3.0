@@ -16,6 +16,8 @@ export const FormRow = styled(Row)`
 `;
 
 export const PageWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   padding: 9rem 1rem 0 1rem;
   box-sizing: border-box;
 `;

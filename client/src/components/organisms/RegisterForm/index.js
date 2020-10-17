@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { register } from '../../../actions/auth';
 
 import Input from '../../atoms/Input';
-import { FormCol } from './styles';
+import { HoverButton } from '../../atoms/Button';
+
+import { FormCol, Header } from './styles';
 import { FormRow } from '../../../utils/GlobalStyles';
 
 const RegisterForm = props => {
@@ -21,19 +23,19 @@ const RegisterForm = props => {
     <form onSubmit={onSubmit}>
       <FormCol>
         <FormRow style={{ justifyContent: 'center' }}>
-          <h2>Sign Up</h2>
+          <Header>Sign Up</Header>
         </FormRow>
         <FormRow>
-          <Input label='name' onChange={setName} value={name} />
+          <Input label='Name' onChange={setName} value={name} />
         </FormRow>
         <FormRow>
-          <Input label='email' onChange={setEmail} value={email} />
+          <Input label='Email' onChange={setEmail} value={email} />
         </FormRow>
         <FormRow>
-          <Input label='password' onChange={setPassword} value={password} />
+          <Input label='Password' onChange={setPassword} value={password} />
         </FormRow>
         <FormRow style={{ justifyContent: 'center' }}>
-          <button type='submit'>Register</button>
+          <HoverButton type='submit'>SIGN UP</HoverButton>
         </FormRow>
       </FormCol>
     </form>
