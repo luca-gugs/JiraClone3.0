@@ -5,7 +5,16 @@ import {
   GET_CARDS_BY_COLUMN,
   REORDER_CARD_SAME_COL,
   REORDER_CARD_DIFFERENT_COL,
+  CLEAR_CARDS,
+  CLEAR_COLUMNS,
+  DELETE_CARD,
 } from './types';
+
+export const clearCol = () => async dispatch => {
+  dispatch({
+    type: CLEAR_COLUMNS,
+  });
+};
 
 //Get Cards By Columns
 export const getCardsByColumn = props => async dispatch => {
@@ -14,8 +23,6 @@ export const getCardsByColumn = props => async dispatch => {
       'Content-Type': 'application/json',
     },
   };
-  // let test = JSON.stringify(props);
-
   const body = { columnIds: props };
 
   try {
@@ -23,7 +30,6 @@ export const getCardsByColumn = props => async dispatch => {
     dispatch({ type: GET_CARDS_BY_COLUMN, payload: res.data });
   } catch (error) {
     console.log(error, 'error');
-    // dispatch({ type: REGISTER_FAIL });
   }
 };
 
@@ -46,24 +52,28 @@ export const createCard = props => async dispatch => {
   try {
     const res = await axios.post('/api/cards', body, config);
     console.log(res.data, 'res.data');
-    // dispatch({ type: GET_CARDS_BY_COLUMN, payload: res.data });
   } catch (error) {
     console.log(error, 'error');
-    // dispatch({ type: REGISTER_FAIL });
   }
 };
 
 // deleteCard
 export const deleteCard = (columnId, _id) => async dispatch => {
-  console.log(columnId, _id, 'here and now');
-
   try {
     const res = await axios.delete(`/api/cards/${_id}/${columnId}`);
-    console.log(res, 'res');
+    dispatch({
+      type: DELETE_CARD,
+      payload: _id,
+    });
   } catch (error) {
     console.log(error);
   }
-  // const { id }
+};
+
+export const clearCards = () => async dispatch => {
+  dispatch({
+    type: CLEAR_CARDS,
+  });
 };
 
 //reorderCards(WITHIN AND BETWEEN COLS)
@@ -84,8 +94,6 @@ export const reorderCards = props => async dispatch => {
   const finishList = columns.filter(function (obj) {
     return obj._id === destination.droppableId;
   });
-
-  console.log(startList, finishList);
 
   const withinColumn = startList[0]._id === finishList[0]._id;
   if (withinColumn) {
@@ -114,7 +122,7 @@ export const reorderCards = props => async dispatch => {
         config
       );
     } catch (error) {
-      console.log(error, 'fuck me an error');
+      console.log(error, 'error');
     }
     return;
   }
@@ -123,10 +131,6 @@ export const reorderCards = props => async dispatch => {
   const addedCardIds = Array.from(finishList[0].cardIds);
   removedCardIds.splice(source.index, 1);
   addedCardIds.splice(destination.index, 0, draggableId);
-
-  console.log(removedCardIds, 'rci');
-  console.log(addedCardIds, 'aci');
-  console.log(columns, 'columns');
 
   const newDifferentColumnsList = {
     [source.droppableId]: {
@@ -160,8 +164,6 @@ export const reorderCards = props => async dispatch => {
       config
     );
   } catch (error) {
-    console.log(error, 'fuck me an error');
+    console.log(error, 'error');
   }
-
-  // console.log(newDifferentColumnsList, 'ndcl');
 };

@@ -9,8 +9,7 @@ export const Divider = styled.div`
   margin: 0 10rem;
   width: 1px;
   background-color: #3b3b3b;
-
-  ${Breakpoint.md} {
+  ${Breakpoint.lg} {
     display: flex;
     margin: 0 4rem;
   }
@@ -20,7 +19,7 @@ export const PageWrapper = styled(PW)`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  ${Breakpoint.md} {
+  ${Breakpoint.lg} {
     justify-content: center;
     flex-direction: row;
   }

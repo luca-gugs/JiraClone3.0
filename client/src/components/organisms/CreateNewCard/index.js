@@ -6,6 +6,8 @@ import Input from '../../atoms/Input';
 import TextArea from '../../atoms/TextArea';
 import CardColorSelect from '../../atoms/CardColorSelect';
 
+import PlusImg from '../../../assets/plus.png';
+
 import { Row } from '../../../utils/GlobalStyles';
 
 import {
@@ -15,6 +17,7 @@ import {
   BackgroundColor,
   Header,
   GoButton,
+  ShowIcon,
 } from './styles';
 
 const CreateNewCard = ({ createCard, id }) => {
@@ -37,7 +40,7 @@ const CreateNewCard = ({ createCard, id }) => {
 
   return (
     <div>
-      <ShowButton onClick={handleClick}>Add Tasks</ShowButton>
+      <ShowIcon onClick={handleClick} src={PlusImg} />
       <PageFill className={formActive ? 'active' : ''}>
         <NewBoardForm>
           <Header>Add a Task</Header>
