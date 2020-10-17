@@ -42,8 +42,9 @@ export const BackgroundColor = styled.div`
 `;
 
 export const ShowButton = styled(TransitionButton)`
-  margin: auto;
-  min-width: 20rem;
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
 `;
 
 export const GoButton = styled(TransitionButton)`

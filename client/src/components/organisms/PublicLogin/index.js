@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../../actions/auth';
 
+import { SubmitButton } from '../../atoms/Button';
 import Input from '../../atoms/Input';
-import { HoverButton } from '../../atoms/Button';
 import { FormCol, Header } from './styles';
 import { FormRow } from '../../../utils/GlobalStyles';
 
-const LoginForm = props => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+const PublicLogin = props => {
+  const [email, setEmail] = useState('lg2674@nyu.edu');
+  const [password, setPassword] = useState('Gosuns98');
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -20,15 +20,13 @@ const LoginForm = props => {
   return (
     <form onSubmit={onSubmit}>
       <FormCol>
-        <Header>Login</Header>
-        <FormRow>
-          <Input label='Email' onChange={setEmail} value={email} />
-        </FormRow>
-        <FormRow>
-          <Input label='Password' onChange={setPassword} value={password} />
+        <FormRow style={{ justifyContent: 'center' }}>
+          <Header>Want To Test Out the App Without Registering?</Header>
         </FormRow>
         <FormRow style={{ justifyContent: 'center' }}>
-          <HoverButton>SUBMIT</HoverButton>
+          <SubmitButton style={{ backgroundColor: 'black', color: 'white' }}>
+            Try Now
+          </SubmitButton>
         </FormRow>
       </FormCol>
     </form>
@@ -39,4 +37,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(LoginForm);
+export default connect(mapStateToProps, { login })(PublicLogin);

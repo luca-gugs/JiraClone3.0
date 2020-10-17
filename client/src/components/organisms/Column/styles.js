@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Col, Row } from '../../../utils/GlobalStyles';
 
 export const Holder = styled(Col)`
+  position: relative;
   height: 80vh;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   background-color: #fbfbff;

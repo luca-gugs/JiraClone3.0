@@ -1,12 +1,19 @@
 import React, { useEffect, useState, Component } from 'react';
 import { connect } from 'react-redux';
 import { getColumnsByBoard } from '../../actions/columns';
+// import { clearCol } from '../../actions/columns';
 import styled from 'styled-components';
 import { getAllBoards } from '../../actions/boards';
-import { getCardsByColumn, reorderCards } from '../../actions/cards';
+import {
+  getCardsByColumn,
+  reorderCards,
+  clearCards,
+  clearCol,
+} from '../../actions/cards';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../components/organisms/Column';
 import { Row, PageWrapper } from '../../utils/GlobalStyles';
+import { StyledRow } from './styles';
 import CreateNewColumn from '../../components/organisms/CreateNewColumn';
 class Board extends Component {
   state = {
@@ -15,17 +22,17 @@ class Board extends Component {
   };
 
   componentDidMount() {
+    this.props.clearCards();
+    this.props.clearCol();
     this.props.getColumnsByBoard({ id: this.props.match.params.id });
     this.setState({ initialLoad: true });
   }
   componentDidUpdate(prevProps) {
-
     if (this.props.columns.currentColumns.columns && !this.state.initialCards) {
       this.props.getCardsByColumn(this.props.columns.currentColumns.columns);
       this.setState({ initialCards: true });
     }
   }
-
 
   onDragEnd = result => {
     const { destination, draggableId, source, type } = result;
@@ -59,15 +66,7 @@ class Board extends Component {
     return (
       <PageWrapper>
         <div style={{ minHeight: '100vh' }}>
-          <Row
-            style={{
-              flexWrap: 'nowrap',
-              overflow: 'scroll',
-              padding: '1rem 2rem',
-              width: 'auto',
-              alignItems: 'center',
-            }}
-          >
+          <StyledRow>
             <DragDropContext onDragEnd={this.onDragEnd}>
               {board &&
                 board.columnOrder.map((columnId, index) => {
@@ -100,7 +99,7 @@ class Board extends Component {
                 })}
             </DragDropContext>
             <CreateNewColumn boardId={boardId} />
-          </Row>
+          </StyledRow>
         </div>
       </PageWrapper>
     );
@@ -118,4 +117,6 @@ export default connect(mapStateToProps, {
   getColumnsByBoard,
   getCardsByColumn,
   reorderCards,
+  clearCards,
+  clearCol,
 })(Board);
