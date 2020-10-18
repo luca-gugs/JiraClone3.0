@@ -5,9 +5,7 @@ const Input = ({ label, value, onChange, ...otherProps }) => {
   const [localValue, setLocalValue] = useState();
 
   useEffect(() => {
-    if (value) {
-      setLocalValue(value);
-    }
+    setLocalValue(value);
   }, [value]);
 
   const handleChange = useCallback(
