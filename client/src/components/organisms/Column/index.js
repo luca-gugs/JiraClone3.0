@@ -18,6 +18,7 @@ class Column extends Component {
     const columnData = this.props.column[0];
     const title = columnData && columnData.title;
     const _id = columnData && columnData._id;
+    const boardId = this.props.boardId;
 
     const changeTitleActiveState = () => {
       this.setState({
@@ -52,7 +53,11 @@ class Column extends Component {
           )}
         </Droppable>
         <CreateNewCard id={_id} />
-        <EditColumn changeTitleActiveState={changeTitleActiveState} />
+        <EditColumn
+          changeTitleActiveState={changeTitleActiveState}
+          columnId={_id}
+          boardId={boardId}
+        />
       </Holder>
     );
   }

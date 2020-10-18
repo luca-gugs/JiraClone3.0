@@ -42,7 +42,32 @@ router.post('/', auth, async (req, res) => {
   } catch (error) {}
 });
 
-// @route   Get api/columns/:boardId
+// @route   DELETE api/columns/:id
+// @desc    Delete Column and Cards within Column
+// @access     Private
+// @req x-auth-token, columnId, boardId
+router.delete('/:id/:boardId', auth, async (req, res) => {
+  try {
+    const column = await Column.findById(req.params.id);
+    const board = await Board.findById(req.params.boardId);
+
+    const newColumnOrder = [];
+    board.columnOrder.filter(function (obj) {
+      if (obj !== column.columnId) {
+        newColumnOrder.push(obj);
+      }
+    });
+
+    board.set({ columnOrder: newColumnOrder });
+    await column.remove();
+    await board.save();
+    res.json({ columnId: column.columnId });
+  } catch (error) {
+    console.log(error, 'error');
+  }
+});
+
+// @route   GET api/columns/:boardId
 // @desc    Get all columns in given board
 // @access  Private
 // @req     x-auth-token, boardId

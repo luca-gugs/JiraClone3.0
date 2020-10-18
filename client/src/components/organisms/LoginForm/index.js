@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { connect } from 'react-redux';
 import { login } from '../../../actions/auth';
 
@@ -22,10 +21,22 @@ const LoginForm = props => {
       <FormCol>
         <Header>Login</Header>
         <FormRow>
-          <Input label='Email' onChange={setEmail} value={email} />
+          <Input
+            label='Email'
+            name='email'
+            type='text'
+            onChange={setEmail}
+            value={email}
+          />
         </FormRow>
         <FormRow>
-          <Input label='Password' onChange={setPassword} value={password} />
+          <Input
+            label='Password'
+            name='password'
+            type='password'
+            onChange={setPassword}
+            value={password}
+          />
         </FormRow>
         <FormRow style={{ justifyContent: 'center' }}>
           <HoverButton>SUBMIT</HoverButton>

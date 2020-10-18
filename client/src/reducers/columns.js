@@ -7,6 +7,7 @@ import {
   REORDER_CARD_DIFFERENT_COL,
   CREATE_COL,
   CLEAR_COLUMNS,
+  DELETE_COLUMNS,
 } from '../actions/types';
 import boards from './boards';
 
@@ -19,6 +20,24 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case DELETE_COLUMNS:
+      const { boardId, columnId, columnKey } = payload;
+      const newColumnOrder = state.currentColumns.board.columnOrder.filter(
+        obj => {
+          return obj !== columnKey;
+        }
+      );
+      const newColumns = state.currentColumns.columns.filter(obj => {
+        return obj._id !== columnId;
+      });
+
+      state.currentColumns.board.columnOrder = newColumnOrder;
+      state.currentColumns.columns = newColumns;
+
+      return {
+        ...state,
+      };
+
     case CREATE_COL:
       const { board, column } = payload;
       const newCurrentCols = state.currentColumns.columns;

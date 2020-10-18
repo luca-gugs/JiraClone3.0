@@ -18,6 +18,7 @@ export const CREATE_CARD = 'CREATE_CARD';
 
 //Delete Item Types
 export const DELETE_CARD = 'DELETE_CARD';
+export const DELETE_COLUMNS = 'DELETE_COLUMNS';
 
 //Get By Types
 export const GET_COLUMNS_BY_BOARD = 'GET_COLUMNS_BY_BOARD';

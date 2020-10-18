@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CLEAR_COLUMNS, CREATE_COL, GET_COLUMNS_BY_BOARD } from './types';
+import {
+  CLEAR_COLUMNS,
+  CREATE_COL,
+  GET_COLUMNS_BY_BOARD,
+  DELETE_COLUMNS,
+} from './types';
 
 //Get Columns By Board
 export const getColumnsByBoard = ({ id }) => async dispatch => {
@@ -13,12 +18,6 @@ export const getColumnsByBoard = ({ id }) => async dispatch => {
     console.log(error);
     // dispatch({ type: REGISTER_FAIL });
   }
-};
-
-export const clearCol = () => async dispatch => {
-  dispatch({
-    type: CLEAR_COLUMNS,
-  });
 };
 
 //Create Column
@@ -41,6 +40,20 @@ export const createNewColumn = ({ title, boardId }) => async dispatch => {
   }
 };
 
+//Delete Column
+export const deleteColumn = ({ columnId, boardId }) => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/columns/${columnId}/${boardId}`);
+    dispatch({
+      type: DELETE_COLUMNS,
+      payload: { columnId, boardId, columnKey: res.data.columnId },
+    });
+  } catch (error) {
+    console.log(error, 'error');
+  }
+};
+
+//Change Column Name
 export const changeColumnName = ({ columnId, title }) => async dispatch => {
   const config = {
     headers: {
@@ -52,7 +65,18 @@ export const changeColumnName = ({ columnId, title }) => async dispatch => {
   };
   try {
     const res = await axios.post(`/api/columns/${columnId}`, body, config);
+
+    dispatch({
+      type: CLEAR_COLUMNS,
+    });
   } catch (error) {
     console.log(error, 'error');
   }
+};
+
+//Clear Columns Reducer
+export const clearCol = () => async dispatch => {
+  dispatch({
+    type: CLEAR_COLUMNS,
+  });
 };

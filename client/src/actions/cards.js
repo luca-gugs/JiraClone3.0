@@ -48,10 +48,8 @@ export const createCard = props => async dispatch => {
     description,
     color,
   };
-  console.log(props);
   try {
     const res = await axios.post('/api/cards', body, config);
-    console.log(res.data, 'res.data');
   } catch (error) {
     console.log(error, 'error');
   }
@@ -84,8 +82,6 @@ export const reorderCards = props => async dispatch => {
     },
   };
   const { destination, draggableId, source, columns } = props;
-
-  console.log(props, 'props key');
 
   const startList = columns.filter(function (obj) {
     return obj._id === source.droppableId;
@@ -142,8 +138,6 @@ export const reorderCards = props => async dispatch => {
       cardIds: addedCardIds,
     },
   };
-
-  console.log(newDifferentColumnsList, 'ndcl');
 
   const body = {
     removedColumnId: source.droppableId,
