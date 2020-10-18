@@ -6,6 +6,7 @@ import {
   CREATE_COL,
   GET_COLUMNS_BY_BOARD,
   DELETE_COLUMNS,
+  CHANGE_COLUMN_NAME,
 } from './types';
 
 //Get Columns By Board
@@ -65,9 +66,9 @@ export const changeColumnName = ({ columnId, title }) => async dispatch => {
   };
   try {
     const res = await axios.post(`/api/columns/${columnId}`, body, config);
-
     dispatch({
-      type: CLEAR_COLUMNS,
+      type: CHANGE_COLUMN_NAME,
+      payload: { columnId, newCol: res.data },
     });
   } catch (error) {
     console.log(error, 'error');

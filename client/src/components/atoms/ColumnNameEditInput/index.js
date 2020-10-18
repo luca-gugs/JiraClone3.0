@@ -24,7 +24,9 @@ const ColumnNameEditInput = ({
   const onSubmit = async e => {
     e.preventDefault();
     changeColumnName({ columnId, title });
-    window.location.reload(false);
+    setTimeout(function () {
+      changeTitleActiveState();
+    }, 400);
   };
 
   return (
