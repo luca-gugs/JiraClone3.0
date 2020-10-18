@@ -26,7 +26,6 @@ const CreateNewColumn = ({ createNewColumn, boardId }) => {
     e.preventDefault();
     createNewColumn({ title, boardId });
     setFormActive(false);
-    window.location.reload(false);
   };
 
   return (

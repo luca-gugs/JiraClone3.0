@@ -7,6 +7,8 @@ import {
   REORDER_CARD_DIFFERENT_COL,
   CREATE_COL,
   CLEAR_COLUMNS,
+  DELETE_COLUMNS,
+  CHANGE_COLUMN_NAME,
 } from '../actions/types';
 import boards from './boards';
 
@@ -19,12 +21,38 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case CHANGE_COLUMN_NAME:
+      const colId = payload.columnId;
+      const newCol = payload.newCol;
+      const newCols = state.currentColumns.columns.filter(obj => {
+        return obj._id !== colId;
+      });
+      newCols.push(newCol);
+      state.currentColumns.columns = newCols;
+      return {
+        ...state,
+      };
+
+    case DELETE_COLUMNS:
+      const { boardId, columnId, columnKey } = payload;
+      const newColumnOrder = state.currentColumns.board.columnOrder.filter(
+        obj => {
+          return obj !== columnKey;
+        }
+      );
+      const newColumns = state.currentColumns.columns.filter(obj => {
+        return obj._id !== columnId;
+      });
+      state.currentColumns.board.columnOrder = newColumnOrder;
+      state.currentColumns.columns = newColumns;
+      return {
+        ...state,
+      };
+
     case CREATE_COL:
       const { board, column } = payload;
-      const newCurrentCols = state.currentColumns.columns;
-      const newCurrentBoard = state.currentColumns.board;
-      newCurrentCols.push(column);
-      newCurrentBoard.columnOrder.push(column.columnId);
+      state.currentColumns.board.columnOrder = board.columnOrder;
+      state.currentColumns.columns.push(column);
       return {
         ...state,
       };

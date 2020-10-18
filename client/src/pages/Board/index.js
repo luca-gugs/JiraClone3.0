@@ -62,6 +62,7 @@ class Board extends Component {
     const { currentColumns } = this.props.columns;
     const { board, columns } = currentColumns;
     const boardId = board && board._id;
+
     const cardsKey = this.props.cards.cards?.cards;
     return (
       <PageWrapper>
@@ -93,6 +94,7 @@ class Board extends Component {
                     <Column
                       column={columnData}
                       passedCards={cardData}
+                      boardId={boardId}
                       key={index}
                     />
                   );
