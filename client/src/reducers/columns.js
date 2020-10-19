@@ -1,14 +1,13 @@
 import {
-  GET_ALL_BOARDS,
-  BOARD_GET_FAILED,
-  CREATE_BOARD,
   GET_COLUMNS_BY_BOARD,
   REORDER_CARD_SAME_COL,
   REORDER_CARD_DIFFERENT_COL,
   CREATE_COL,
   CLEAR_COLUMNS,
   DELETE_COLUMNS,
+  DELETE_CARD,
   CHANGE_COLUMN_NAME,
+  CREATE_CARD,
 } from '../actions/types';
 import boards from './boards';
 
@@ -29,6 +28,26 @@ export default function (state = initialState, action) {
       });
       newCols.push(newCol);
       state.currentColumns.columns = newCols;
+      return {
+        ...state,
+      };
+    case CREATE_CARD:
+      const addedCardColumns = state.currentColumns.columns.filter(obj => {
+        return obj.columnId !== payload.column.columnId;
+      });
+      addedCardColumns.push(payload.column);
+      state.currentColumns.columns = addedCardColumns;
+
+      return {
+        ...state,
+      };
+    case DELETE_CARD:
+      const removedCardColumns = state.currentColumns.columns.filter(obj => {
+        return obj._id !== payload.column._id;
+      });
+      removedCardColumns.push(payload.column);
+      state.currentColumns.columns = removedCardColumns;
+
       return {
         ...state,
       };
@@ -90,7 +109,6 @@ export default function (state = initialState, action) {
     case REORDER_CARD_DIFFERENT_COL:
       const { newDifferentColumnsList } = payload;
       const currentColumns = state;
-
       var arr = Object.keys(newDifferentColumnsList).map(key => {
         if (newDifferentColumnsList[key])
           return { cardIds: newDifferentColumnsList[key], key: key };

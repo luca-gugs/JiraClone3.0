@@ -33,9 +33,10 @@ const CreateNewCard = ({ createCard, id }) => {
   const onSubmit = async e => {
     e.preventDefault();
     createCard({ title, description, columnId: id, color });
-
     setFormActive(false);
-    window.location.reload(false);
+    setTitle('');
+    setDescription('');
+    setColor('none');
   };
 
   return (

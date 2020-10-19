@@ -16,7 +16,6 @@ import {
 class Card extends Component {
   onDelete = (columnId, _id) => {
     this.props.deleteCard(columnId, _id);
-    window.location.reload(false);
   };
   render() {
     const { data, columnId } = this.props;
