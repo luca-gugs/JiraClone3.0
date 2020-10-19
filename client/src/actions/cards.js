@@ -8,6 +8,7 @@ import {
   CLEAR_CARDS,
   CLEAR_COLUMNS,
   DELETE_CARD,
+  CREATE_CARD,
 } from './types';
 
 export const clearCol = () => async dispatch => {
@@ -50,6 +51,10 @@ export const createCard = props => async dispatch => {
   };
   try {
     const res = await axios.post('/api/cards', body, config);
+    dispatch({
+      type: CREATE_CARD,
+      payload: { card: res.data.card, column: res.data.column },
+    });
   } catch (error) {
     console.log(error, 'error');
   }
@@ -61,7 +66,7 @@ export const deleteCard = (columnId, _id) => async dispatch => {
     const res = await axios.delete(`/api/cards/${_id}/${columnId}`);
     dispatch({
       type: DELETE_CARD,
-      payload: _id,
+      payload: { _id, column: res.data.column },
     });
   } catch (error) {
     console.log(error);

@@ -24,7 +24,6 @@ router.post('/', auth, async (req, res) => {
       column: columnId,
       cardId,
       color,
-
     });
     const result = await newCard.save();
 
@@ -42,7 +41,6 @@ router.post('/', auth, async (req, res) => {
       card: result,
       column: result2,
     });
-
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -53,7 +51,6 @@ router.post('/', auth, async (req, res) => {
 // @desc    Delete a card
 // @access  Private
 router.delete('/:id/:columnId', auth, async (req, res) => {
-
   try {
     const card = await Card.findById(req.params.id);
     const column = await Column.findById(req.params.columnId);
@@ -70,7 +67,7 @@ router.delete('/:id/:columnId', auth, async (req, res) => {
     column.set({ cardIds: newCardIds });
     await column.save();
     await card.remove();
-    res.json({ msg: 'Post removed' });
+    res.json({ column });
   } catch (error) {
     console.log(error);
   }
@@ -86,7 +83,6 @@ const findAllCards = columnId =>
   Card.find({ column: columnId }).select(
     'cardId title description cardNumb color'
   );
-
 
 router.post('/getallcards', auth, async (req, res) => {
   try {
@@ -105,7 +101,6 @@ router.post('/getallcards', auth, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 });
 
 // @route    POST api/cards/reorder/samecolumn
@@ -131,7 +126,6 @@ router.post('/reorder/samecolumn', auth, async (req, res) => {
     return res
       .status(200)
       .json({ message: 'same column reorder success', savedColumn });
-
   } catch (error) {
     return error;
   }
